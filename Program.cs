@@ -1,4 +1,6 @@
+using Infrastructure.DataAccess.Repositories.Entities;
 using Microsoft.EntityFrameworkCore;
+using ProvaPub.Interfaces;
 using ProvaPub.Repository;
 using ProvaPub.Services;
 
@@ -11,9 +13,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<RandomService>();
+builder.Services.AddScoped<RandomService>();
+builder.Services.AddScoped<OrderService>();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+
 builder.Services.AddDbContext<TestDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("ctx")));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IOrdersRepository, OrdersRepository>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
