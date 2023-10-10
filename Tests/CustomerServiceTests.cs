@@ -42,6 +42,7 @@ namespace ProvaPub.Tests
         [Fact]
         public async Task CamPurchase_FindAsyncReturnsNull_error()
         {
+            _fixture.ClearSetup();
             var customerId = 1;
             var purchaseValue = 10M;
 
@@ -57,6 +58,7 @@ namespace ProvaPub.Tests
         [Fact]
         public async Task CamPurchase_OrderCountMoreThan0_error()
         {
+            _fixture.ClearSetup();
             var customerId = 1;
             var purchaseValue = 10M;
             var customer = new Customer { Id = customerId, Name = "Ciclano da Silva" };
@@ -79,6 +81,7 @@ namespace ProvaPub.Tests
         [Fact]
         public async Task CamPurchase_FirstPurchaseMoreThan100_error()
         {
+            _fixture.ClearSetup();
             var customerId = 1;
             var purchaseValue = 1000M;
             var customer = new Customer { Id = customerId, Name = "Ciclano da Silva" };
@@ -104,6 +107,7 @@ namespace ProvaPub.Tests
         [Fact]
         public async Task CamPurchase__success()
         {
+            _fixture.ClearSetup();
             var customerId = 1;
             var purchaseValue = 90M;
             var customer = new Customer { Id = customerId, Name = "Ciclano da Silva" };

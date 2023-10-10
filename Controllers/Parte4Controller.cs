@@ -14,6 +14,8 @@ namespace ProvaPub.Controllers
 	/// 
 	/// Utilize o framework de testes que desejar. 
 	/// Crie o teste na pasta "Tests" da solution
+	/// 
+	/// Notas: Para os testes unitarios utilizei o XUnit e o Moq. Para facilitação deste teste eu implementei um esquema de Repository Pattern para deixar mais simples.
 	/// </summary>
 	[ApiController]
 	[Route("[controller]")]
