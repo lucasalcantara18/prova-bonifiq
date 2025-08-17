@@ -16,7 +16,7 @@ namespace ProvaPub.Services
 
         public CustomerList ListCustomers(int page)
         {
-            var response = _ctx.Customers.ObterPaginacao(page);
+            var response = _ctx.Customers.Include(x => x.Orders).ObterPaginacao(page);
 
             return new CustomerList() { HasNext = response.hasNext, TotalCount = response.totalCount, Customers = response.itens };
         }

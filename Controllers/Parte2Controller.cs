@@ -28,13 +28,13 @@ namespace ProvaPub.Controllers
         }
 	
 		[HttpGet("products")]
-		public ProductList ListProducts(int page)
+		public ProductList ListProducts(int page = 1)
 		{
 			return _productService.ListProducts(page);
 		}
 
         [HttpGet("customers")]
-		public CustomerList ListCustomers(int page)
+		public CustomerList ListCustomers(int page = 1)
 		{
 			return _customerService.ListCustomers(page);
 		}
