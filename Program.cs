@@ -17,9 +17,9 @@ builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<OrderService>();
 
-builder.Services.AddScoped<IPaymentMethod, PixPayment>();
-builder.Services.AddScoped<IPaymentMethod, CreditCardPayment>();
-builder.Services.AddScoped<IPaymentMethod, PaypalPayment>();
+builder.Services.AddScoped<IPaymentMethod, PixPaymentService>();
+builder.Services.AddScoped<IPaymentMethod, CreditCardPaymentService>();
+builder.Services.AddScoped<IPaymentMethod, PaypalPaymentService>();
 
 builder.Services.AddDbContext<TestDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("ctx")));

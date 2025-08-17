@@ -4,7 +4,7 @@ using ProvaPub.Repository;
 
 namespace ProvaPub.Services
 {
-    public class PaypalPayment : IPaymentMethod
+    public class PaypalPaymentService : IPaymentMethod
     {
         public string PaymentMethod => "paypal";
 

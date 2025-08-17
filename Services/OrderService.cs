@@ -1,4 +1,5 @@
-﻿using ProvaPub.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ProvaPub.Interfaces;
 using ProvaPub.Models;
 using ProvaPub.Repository;
 using ProvaPub.Utils;
@@ -35,6 +36,8 @@ namespace ProvaPub.Services
                 CustomerId = customerId,
                 OrderDate = DateTime.UtcNow
             });
+
+            _ctx.SaveChanges();
 
             return newOrder.NormalizeTimezone();//Retorna o pedido para o controller
         }
