@@ -19,8 +19,9 @@ namespace ProvaPub.Repository
 
 			modelBuilder.Entity<Customer>().HasData(getCustomerSeed());
 			modelBuilder.Entity<Product>().HasData(getProductSeed());
+			modelBuilder.Entity<Order>().HasData(getOrdersSeed());
 
-			modelBuilder.Entity<RandomNumber>().HasIndex(s => s.Number).IsUnique();
+            modelBuilder.Entity<RandomNumber>().HasIndex(s => s.Number).IsUnique();
 		}
 
 		private Customer[] getCustomerSeed()
@@ -34,8 +35,9 @@ namespace ProvaPub.Repository
 					Name = new Faker().Person.FullName,
 				});
 			}
-			return result.ToArray();
+            return result.ToArray();
 		}
+
 		private Product[] getProductSeed()
 		{
 			List<Product> result = new();
@@ -50,7 +52,27 @@ namespace ProvaPub.Repository
 			return result.ToArray();
 		}
 
-		public DbSet<Customer> Customers{ get; set; }
+        private Order[] getOrdersSeed()
+        {
+            List<Order> result = new List<Order>
+			{
+                new Order()
+                {
+                    Id = 1,
+                    CustomerId = 11,
+                    OrderDate = DateTime.UtcNow
+                },
+                new Order()
+                {
+                    Id = 2,
+                    CustomerId = 11,
+                    OrderDate = DateTime.UtcNow.AddDays(-40)
+                }
+            };
+            return result.ToArray();
+        }
+
+        public DbSet<Customer> Customers{ get; set; }
 		public DbSet<Product> Products{ get; set; }
 		public DbSet<Order> Orders { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using ProvaPub.Models;
 using ProvaPub.Repository;
+using ProvaPub.Utils;
 
 namespace ProvaPub.Services
 {
@@ -14,8 +15,9 @@ namespace ProvaPub.Services
 
 		public ProductList  ListProducts(int page)
 		{
-			return new ProductList() {  HasNext=false, TotalCount =10, Products = _ctx.Products.ToList() };
-		}
+			var response = _ctx.Products.ObterPaginacao(page);
 
-	}
+            return new ProductList() {  HasNext=response.hasNext, TotalCount = response.totalCount, Products = response.itens};
+		}
+    }
 }

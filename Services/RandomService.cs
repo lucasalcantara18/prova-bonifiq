@@ -8,21 +8,23 @@ namespace ProvaPub.Services
 	{
 		int seed;
         TestDbContext _ctx;
-		public RandomService()
+		public RandomService(TestDbContext ctx)
         {
-            var contextOptions = new DbContextOptionsBuilder<TestDbContext>()
-    .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Teste;Trusted_Connection=True;")
-    .Options;
             seed = Guid.NewGuid().GetHashCode();
-
-            _ctx = new TestDbContext(contextOptions);
+            _ctx = ctx;
         }
         public async Task<int> GetRandom()
 		{
-            var number =  new Random(seed).Next(100);
+            var number = new Random(seed).Next(100);
+
+            var existeRandonNumber = await _ctx.Numbers.FirstOrDefaultAsync(n => n.Number == number);
+
+            if (existeRandonNumber != null)
+                return number;
+
             _ctx.Numbers.Add(new RandomNumber() { Number = number });
             _ctx.SaveChanges();
-			return number;
+            return number;
 		}
 
 	}
